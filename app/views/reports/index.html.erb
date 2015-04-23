@@ -1,0 +1,18 @@
+<% if logged_in? %>
+<section>
+	<h2>Reports</h2>
+	<% @user.reports.each do |report| %>
+	<div>
+		<h3>Report #<%= @user.reports.index(report) +1 %></h3>
+		<p><strong><%=report.student_nfl_id%> </strong></h3>
+	</div>
+	<% end %>
+</section>
+
+Logged in as: <%= current_user.name %> <br><br> <%= link_to 'Log Out', logout_path, method: :delete %>
+
+<% else %>
+	 <h1>You are not logged in.  Please log in to access this page.</h1>
+  <%= link_to 'Log In', login_path %>
+
+<% end %>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "users/:id" => "users#show", as: :user
 
   get "reports/new" => "reports#new", as: :new_report
+  get "reports" => "reports#index"
 
   post "users/:id/reports" => "reports#create", as: :user_reports
 

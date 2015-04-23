@@ -1,5 +1,10 @@
 class ReportsController < ApplicationController
 
+	def index
+		@reports = Report.all
+		@user = current_user
+	end
+
 	def new
 		@report = Report.new
 		@user = current_user
@@ -9,7 +14,7 @@ class ReportsController < ApplicationController
 		@user = User.find(params[:id])
 		@report = @user.reports.new(report_params)
 		@report.save
-		redirect_to user_path(@user)
+		redirect_to new_report_path(@user)
 	end
 
 private

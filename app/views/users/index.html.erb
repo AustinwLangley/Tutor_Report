@@ -1,9 +1,17 @@
+<% if logged_in? %>
+
 <h1>App Users</h1>
-<%= current_user.name %>
-<ul>
-	<% @users.each do |user| %>
-	<li>
-		<strong><%= user.name %></strong>
-	</li>
-	<% end %>
-</ul>
+	<%= current_user.name %>
+		<ul>
+			<% @users.each do |user| %>
+			<li>
+				<strong><%= user.name %></strong>
+			</li>
+			<% end %>
+		</ul>
+
+<% else %>
+	 <h1>You are not logged in.  Please log in to access this page.</h1>
+  <%= link_to 'Log In', login_path %>
+
+<% end %>
