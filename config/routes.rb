@@ -8,6 +8,12 @@ Rails.application.routes.draw do
 
   post "users/:id/reports" => "reports#create", as: :user_reports
 
+
+  #user routes
+  get "users" => "users#index"
+  post "users" => "users#create"
+  get "signup" => "users#new"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
