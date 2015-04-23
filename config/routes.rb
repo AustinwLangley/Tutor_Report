@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
+  root "sessions#new"
+
   get "users/" => "users#index"
   get "users/new" => "users#new", as: :new_user
   post "users/" => "users#create"
   get "users/:id" => "users#show", as: :user
 
-  get "reports/new" => "reports#new", as: :new_report
+  #reports CRUD
   get "reports" => "reports#index"
-
+  get "reports/new" => "reports#new", as: :new_report
   post "users/:id/reports" => "reports#create", as: :user_reports
-
+  get "reports/:id" => "reports#show", as: :report
+  get "reports/:id/edit" => "reports#edit", as: :edit_report
+  patch "reports/:id" => "reports#update"
+  delete "reports/:id" => "reports#destroy"
 
   #signup routes
   get "signup" => "users#new"

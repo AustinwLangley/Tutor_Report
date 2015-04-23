@@ -1,8 +1,8 @@
 <% if logged_in? %>
 
 <section>
-  <h2>Add a new report</h2>
-  <%= form_for [@user, @report] do |f| %>
+  <h2>Edit this report</h2>
+  <%= form_for(@report, url: {controller: "reports", action: "update"}) do |f| %>
 
     <div>
           <%= f.label :student_nfl_id, "Student ID #"  %>
@@ -47,12 +47,12 @@
     </div>
 
       <br>
-    <%= f.submit "Add new report" %>
+    <%= f.submit "Submit these changes" %>
     <% end%>
 </section>
   <br>
-<%= link_to "Back to your reports", reports_path %>
-<br><br>
+<%= link_to "Back to the list!", reports_path %>
+<br>  
 Logged in as: <%= current_user.name %> <br><br> <%= link_to 'Log Out', logout_path, method: :delete %>
 
 <% else %>

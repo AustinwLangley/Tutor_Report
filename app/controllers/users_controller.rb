@@ -16,7 +16,8 @@ class UsersController < ApplicationController
 	def create
 	  @user = User.new(params.require(:user).permit(:name, :email, :password))
 	  if @user.save
-	    redirect_to user_path(@user)
+	  	session[:user_id] = @user.id.to_s
+	    redirect_to new_report_path(@user)
   	else
     	render :new
   	end

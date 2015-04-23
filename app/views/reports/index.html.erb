@@ -1,10 +1,14 @@
 <% if logged_in? %>
+
+<%= link_to "Create a new report", new_report_path %>
+
 <section>
 	<h2>Reports</h2>
 	<% @user.reports.each do |report| %>
 	<div>
 		<h3>Report #<%= @user.reports.index(report) +1 %></h3>
 		<p><strong><%=report.student_nfl_id%> </strong></h3>
+		<%= link_to "More info", report_path(report) %>
 	</div>
 	<% end %>
 </section>

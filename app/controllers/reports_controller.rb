@@ -5,6 +5,11 @@ class ReportsController < ApplicationController
 		@user = current_user
 	end
 
+	def show
+		@report = Report.find(params[:id]) 	
+		@user = current_user
+	end
+
 	def new
 		@report = Report.new
 		@user = current_user
@@ -16,6 +21,29 @@ class ReportsController < ApplicationController
 		@report.save
 		redirect_to new_report_path(@user)
 	end
+
+	def edit
+		@report = Report.find(params[:id]) 
+		@user = current_user
+	end
+
+	def update
+  @report = Report.find(params[:id])
+	  if @report.update_attributes(report_params)
+	    redirect_to reports_path
+	  else
+	    render :edit
+	  end
+	end
+
+	def destroy
+	  @report = Report.find(params[:id])
+	  @report.destroy
+	  redirect_to reports_path
+	end
+
+
+
 
 private
 	def report_params

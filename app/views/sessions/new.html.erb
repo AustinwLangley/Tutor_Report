@@ -1,5 +1,8 @@
-<h1>Log In</h1>
-  <%= form_for :login do |f| %>
+<h1>New Future Learning</h1>
+
+<%= image_tag "logo_4NF.jpg" %>
+
+  <%= form_for :login, url: login_path do |f| %>  <!-- Specifying the route to go to login path -->
     <div>
       <%= f.label :email %>
       <%= f.text_field :email %>
@@ -12,3 +15,7 @@
       <%= f.submit 'Log In' %>
     </div>
 <% end %>
+
+<br>
+
+<%= link_to "Sign up", signup_path %>
