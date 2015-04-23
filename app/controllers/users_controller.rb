@@ -1,12 +1,16 @@
 class UsersController < ApplicationController
 	def index
+		@users = User.all
 	end
 	def show
 		@user = User.find(params[:id])
+		@report = Report.new
+		
 	end
 
 	def new
     	@user = User.new
+    	@report = Report.new
  	end
 
 	def create

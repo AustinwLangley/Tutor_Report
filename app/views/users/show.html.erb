@@ -4,5 +4,63 @@
 	<p><strong>Email:</strong><%= @user.email%></p>
 </section>
 
+<section>
+	<h2>Reports</h2>
+	<% @user.reports.each do |report| %>
+	<div>
+		<h3>Report #<%= @user.reports.index(report) +1 %></h3>
+		<p><strong><%=report.student_nfl_id%> </strong></h3>
+	</div>
+	<% end %>
+</section>
 
+<section>
+	<h2>Add a new report</h2>
+	<%= form_for [@user, @report] do |f| %>
 
+	  <div>
+          <%= f.label :student_nfl_id, "Student ID #"  %>
+          <%= f.text_field :student_nfl_id %>
+      </div>
+
+      <div>
+          <%= f.label :tutor_nfl_id, "Tutor ID #" %>
+          <%= f.text_field :tutor_nfl_id %>
+      </div>
+      <br>
+      <div>
+          <%= f.label :what_was_covered, "What was covered? " %>
+          <%= f.text_area :what_was_covered %>
+      </div>
+
+      <div>
+          <%= f.label :performance, "Performance: " %>
+          <%= f.text_area :performance %>
+      </div>
+
+      <div>
+          <%= f.label :assignment, "Assignment: " %>
+          <%= f.text_area :assignment %>
+      </div>
+      <br>
+
+      <div>
+	    <%= f.label :director_flag, "Does the Director need to take a look at this?" %><br>
+	    <%= f.label :director_flag, "Yes", :value => true %>
+	    <%= f.radio_button :director_flag, true %>
+	    <%= f.label :director_flag, "No", :value => false %>
+	    <%= f.radio_button :director_flag, false, :checked => true %>
+	  </div>
+
+	  <div>
+	    <%= f.label :parent_flag, "Do the Parents need to be notified?" %><br>
+	    <%= f.label :parent_flag, "Yes", :value => true %>
+	    <%= f.radio_button :parent_flag, true %>
+	    <%= f.label :parent_flag, "No", :value => false %>
+	    <%= f.radio_button :parent_flag, false, :checked => true %>
+	  </div>
+
+      <br>
+    <%= f.submit "Add new report" %>
+    <% end%>
+</section>

@@ -1,0 +1,33 @@
+<section>
+	<h2>Add a new report</h2>
+	<%= form_for [@user, @report] do |f| %>
+
+	  <div>
+          <%= f.label :student_nfl_id, "Student ID #"  %>
+          <%= f.text_field :student_nfl_id %>
+      </div>
+
+      <div>
+          <%= f.label :tutor_nfl_id, "Tutor ID #" %>
+          <%= f.text_field :tutor_nfl_id %>
+      </div>
+
+      <div>
+          <%= f.label :what_was_covered %>
+          <%= f.text_area :what_was_covered %>
+      </div>
+
+      <div>
+          <%= f.label :performance %>
+          <%= f.text_area :performance %>
+      </div>
+
+      <div>
+          <%= f.label :assignment %>
+          <%= f.text_area :assignment %>
+      </div>
+
+      <br>
+    <%= f.submit "Add new report" %>
+
+</section>
