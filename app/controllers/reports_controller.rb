@@ -1,8 +1,17 @@
 class ReportsController < ApplicationController
 
 	def index
-		@reports = Report.all
 		@user = current_user
+		#These if statements check to see if any search terms have been entered in before #returning all reports.
+		if params[:student_id]
+				@reports = Report.where(student_nfl_id: params[:student_id])
+			elsif params[:director_flag_setting]
+				@reports = Report.where(director_flag: params[:director_flag_setting])
+			elsif params[:parent_flag_setting]
+				@reports = Report.where(parent_flag: params[:parent_flag_setting])
+			else
+				@reports = Report.all
+		end
 	end
 
 	def show
