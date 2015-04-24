@@ -7,7 +7,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id.to_s
       redirect_to new_report_path
     else
-      redirect_to login_path
+      flash.now[:error] = "Your email address or password are incorrect."
+      render :new
     end
   end
   def destroy

@@ -28,6 +28,7 @@ class UsersController < ApplicationController
 	  @user = User.new(params.require(:user).permit(:name, :email, :password, :password_confirmation))
 	  if @user.save
 	  	session[:user_id] = @user.id.to_s
+	  	flash[:welcome] = "Thanks for signing up, #{@user.name}!"
 	    redirect_to new_report_path(@user)
   	else
     	render :new

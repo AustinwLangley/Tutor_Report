@@ -9,7 +9,13 @@
 </head>
 <body>
 
+<% if flash[:welcome] %>
+    <h4 class="bg-success flash"><%= flash[:welcome] %></h4>
+<% end %>
 
+<% if flash[:error] %>
+    <h4 class="bg-danger flash"><%= flash[:error] %></h4>
+<% end %>
 
 <%= yield %>
 
