@@ -2,16 +2,28 @@
 
 <%= link_to "Create a new report", new_report_path %>
 
+<!--***** #need to look at this!!! ADMIN???  SHAWN  *****-->
+<% if current_user.role == "admin" %>  
 <section>
-	<h2>Reports</h2>
-	<% @user.reports.each do |report| %>
-	<div>
-		<h3>Report #<%= @user.reports.index(report) +1 %></h3>
-		<p><strong><%=report.student_nfl_id%> </strong></h3>
+	<h3>Reports</h3>
+		<% @reports.each do |report| %>
+			<h3>Report #<%= @reports.index(report) +1 %></h3>
+			<p><strong><%=report.student_nfl_id%> </strong></h3>
 		<%= link_to "More info", report_path(report) %>
-	</div>
 	<% end %>
 </section>
+<% else %>
+	<section>
+		<h3>Reports</h3>
+			<% @user.reports.each do |report| %>
+			<div>
+				<h3>Report #<%= @user.reports.index(report) +1 %></h3>
+				<p><strong><%=report.student_nfl_id%> </strong></h3>
+				<%= link_to "More info", report_path(report) %>
+			</div>
+		<% end %>
+	</section>
+<% end %>
 
 Logged in as: <%= current_user.name %> <br><br> <%= link_to 'Log Out', logout_path, method: :delete %>
 

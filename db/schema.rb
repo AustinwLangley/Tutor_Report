@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423013734) do
+ActiveRecord::Schema.define(version: 20150424022524) do
 
   create_table "reports", force: :cascade do |t|
     t.integer  "student_nfl_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150423013734) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+    t.string   "role"
   end
 
 end
