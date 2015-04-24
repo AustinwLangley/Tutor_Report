@@ -19,6 +19,7 @@ class ReportsController < ApplicationController
 		@user = User.find(params[:id])
 		@report = @user.reports.new(report_params)
 		@report.save
+		flash[:saved] = "Your report has been saved, #{@user.name}!"
 		redirect_to new_report_path(@user)
 	end
 
