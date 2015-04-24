@@ -28,7 +28,7 @@ class ReportsController < ApplicationController
 	end
 
 	def update
-  @report = Report.find(params[:id])
+  	  @report = Report.find(params[:id])
 	  if @report.update_attributes(report_params)
 	    redirect_to reports_path
 	  else
@@ -41,9 +41,6 @@ class ReportsController < ApplicationController
 	  @report.destroy
 	  redirect_to reports_path
 	end
-
-
-
 
 private
 	def report_params
