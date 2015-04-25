@@ -36,6 +36,7 @@
 		<% @reports.each do |report| %>
 			<h3>Report #<%= @reports.index(report) +1 %></h3>
 			<p><strong>Student ID#<%=report.student_nfl_id%> </strong></p>
+			<p><strong>Written by:<%=@user.name%> </strong></p>
 		<%= link_to "More info", report_path(report) %>
 	<% end %>
 </section>
