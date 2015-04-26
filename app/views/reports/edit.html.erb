@@ -1,5 +1,5 @@
 <% if logged_in? %>
-
+<%= render 'shared/navbar' %> 
 <section>
   <h2>Edit this report</h2>
   <%= form_for(@report, url: {controller: "reports", action: "update"}) do |f| %>

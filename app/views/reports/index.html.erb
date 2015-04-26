@@ -1,64 +1,81 @@
 <% if logged_in? %>
 
-<%= link_to "Create a new report", new_report_path %>
+<%= render 'shared/navbar' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+	 
+	<% if current_user.role == "admin" %>  
 
-<% if current_user.role == "admin" %>  
-
-<!-- Search boxes...form_tag is for passing data, form_for is for creating new instances-->
-<!-- ******************************************************************************** -->
-<%= form_tag reports_path, method: :get do  %>
-	<div>
-      <%= label_tag :student_id %>
-      <%= text_field_tag :student_id %>
-    </div>
-    <%= submit_tag 'Search' %>
-<% end %>
-
-<%= form_tag reports_path, method: :get do  %>
-	<div>
-      <%= label_tag :director_flag_setting %>
-      <%= text_field_tag :director_flag_setting %>
-    </div>
-    <%= submit_tag 'Search' %>
-<% end %>
-
-<%= form_tag reports_path, method: :get do  %>
-	<div>
-      <%= label_tag :parent_flag_setting %>
-      <%= text_field_tag :parent_flag_setting %>
-    </div>
-    <%= submit_tag 'Search' %>
-<% end %>
-<!-- ********************************************************************************* -->
-
-<section>
-	<h3>Reports</h3>
-		<% @reports.each do |report| %>
-			<h3>Report #<%= @reports.index(report) +1 %></h3>
-			<p><strong>Student ID#<%=report.student_nfl_id%> </strong></p>
-			<p><strong>Written by:<%=@user.name%> </strong></p>
-		<%= link_to "More info", report_path(report) %>
+	<!-- Search boxes...form_tag is for passing data, form_for is for creating new instances-->
+	<!-- ******************************************************************************** -->
+	<%= form_tag reports_path, method: :get do  %>
+		<div>
+	      <%= label_tag :student_id %>
+	      <%= text_field_tag :student_id %>
+	    </div>
+	    <%= submit_tag 'Search' %>
 	<% end %>
-</section>
 
-<% else %>
+	<%= form_tag reports_path, method: :get do  %>
+		<div>
+	      <%= label_tag :director_flag_setting %>
+	      <%= text_field_tag :director_flag_setting %>
+	    </div>
+	    <%= submit_tag 'Search' %>
+	<% end %>
+
+	<%= form_tag reports_path, method: :get do  %>
+		<div>
+	      <%= label_tag :parent_flag_setting %>
+	      <%= text_field_tag :parent_flag_setting %>
+	    </div>
+	    <%= submit_tag 'Search' %>
+	<% end %>
+	<!-- ********************************************************************************* -->
+    </div>
+  </div>
+
+
 	<section>
-		<h3>Reports</h3>
-			<% @user.reports.each do |report| %>
-			<div>
-				<h3>Report #<%= @user.reports.index(report) +1 %></h3>
-				<p><strong>Student ID# <%=report.student_nfl_id%> </strong></p>
-				<p><strong>Written by:<%=@user.name%> </strong></p>
-				<%= link_to "More info", report_path(report) %>
-			</div>
-		<% end %>
+		<div class="row">
+			
+				<h3>Reports:</h3>
+					<% @reports.each do |r| %>
+					<div class="col-md-4">
+						<h3>Report #<%= @reports.index(r) +1 %></h3>
+						<p><strong>Student ID# <%=r.student_nfl_id%> </strong></p>
+						<p><strong>Written by: <%=r.user_id%> </strong></p>
+					<%= link_to "More info", report_path(r) %>
+					</div>
+				<% end %>
+			
+		</div>
 	</section>
-<% end %>
 
-Logged in as: <%= current_user.name %> <br><br> <%= link_to 'Log Out', logout_path, method: :delete %>
+	<% else %>
+		<section>
+			<h3>Reports:</h3>
+				<% @user.reports.each do |report| %>
+				<div>
+					<h3>Report #<%= @user.reports.index(report) +1 %></h3>
+					<p><strong>Student ID# <%=report.student_nfl_id%> </strong></p>
+					<p><strong>Written by: <%=@user.name%> </strong></p>
+					<%= link_to "More info", report_path(report) %>
+				</div>
+			<% end %>
+		</section>
+	<% end %>
 
-<% else %>
-	 <h1>You are not logged in.  Please log in to access this page.</h1>
-  <%= link_to 'Log In', login_path %>
+	Logged in as: <%= current_user.name %> <br><br> <%= link_to 'Log Out', logout_path, method: :delete %>
+
+	<% else %>
+		 <h1>You are not logged in.  Please log in to access this page.</h1>
+	  <%= link_to 'Log In', login_path %>
+	
+  </div>
+</div>
+
+
 
 <% end %>

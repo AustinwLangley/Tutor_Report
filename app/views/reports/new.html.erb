@@ -1,62 +1,71 @@
 <% if logged_in? %>
 
-<section>
-  <h2>Add a new report</h2>
-  <%= form_for [@user, @report] do |f| %>
+<%= render 'shared/navbar' %> 
 
-    <div>
-          <%= f.label :student_nfl_id, "Student ID #"  %>
-          <%= f.text_field :student_nfl_id %>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+      <section>
+        <h2>Add a New Report</h2>
+        <%= form_for [@user, @report] do |f| %>
 
-      <div>
-          <%= f.label :tutor_nfl_id, "Tutor ID #" %>
-          <%= f.text_field :tutor_nfl_id %>
-      </div>
-      <br>
-      <div>
-          <%= f.label :what_was_covered, "What was covered? " %>
-          <%= f.text_area :what_was_covered %>
-      </div>
+          <div class="form-group">
+                <%= f.label :student_nfl_id, "Student ID #"  %>
+                <%= f.text_field :student_nfl_id, class: "form-control"    %>
+          </div>
 
-      <div>
-          <%= f.label :performance, "Performance: " %>
-          <%= f.text_area :performance %>
-      </div>
+          <div class="form-group">
+                <%= f.label :tutor_nfl_id, "Tutor ID #" %>
+                <%= f.text_field :tutor_nfl_id, class: "form-control"    %>
+          </div>
+            <br>
+          <div class="form-group">
+                <%= f.label :what_was_covered, "What was covered? " %>
+                <%= f.text_area :what_was_covered, class: "form-control"    %>
+          </div>
 
-      <div>
-          <%= f.label :assignment, "Assignment: " %>
-          <%= f.text_area :assignment %>
-      </div>
-      <br>
+          <div class="form-group">
+                <%= f.label :performance, "Performance: " %>
+                <%= f.text_area :performance, class: "form-control"    %>
+          </div>
 
-      <div>
-      <%= f.label :director_flag, "Does the Director need to take a look at this?" %><br>
-      <%= f.label :director_flag, "Yes", :value => true %>
-      <%= f.radio_button :director_flag, true %>
-      <%= f.label :director_flag, "No", :value => false %>
-      <%= f.radio_button :director_flag, false, :checked => true %>
+          <div class="form-group">
+                <%= f.label :assignment, "Assignment: " %>
+                <%= f.text_area :assignment, class: "form-control"    %>
+          </div>
+            <br>
+
+          <div class="form-group">
+              <%= f.label :director_flag, "Does the Director need to take a look at this?" %><br>
+              <%= f.label :director_flag, "Yes", :value => true %>
+              <%= f.radio_button :director_flag, true %>
+              <%= f.label :director_flag, "No", :value => false %>
+              <%= f.radio_button :director_flag, false, :checked => true %>
+          </div>
+
+          <div class="form-group">
+              <%= f.label :parent_flag, "Do the Parents need to be notified?" %><br>
+              <%= f.label :parent_flag, "Yes", :value => true %>
+              <%= f.radio_button :parent_flag, true %>
+              <%= f.label :parent_flag, "No", :value => false %>
+              <%= f.radio_button :parent_flag, false, :checked => true %>
+          </div>
+
+            <br>
+          <%= f.submit "Add new report", class: "btn btn-success btn-block"  %>
+          <% end%>
+      </section>
+        
+      <% else %>
+         <h1>You are not logged in.  Please log in to access this page.</h1>
+        <%= link_to 'Log In', login_path %>
+
+      <% end %>
     </div>
+  </div>
+</div>
 
-    <div>
-      <%= f.label :parent_flag, "Do the Parents need to be notified?" %><br>
-      <%= f.label :parent_flag, "Yes", :value => true %>
-      <%= f.radio_button :parent_flag, true %>
-      <%= f.label :parent_flag, "No", :value => false %>
-      <%= f.radio_button :parent_flag, false, :checked => true %>
-    </div>
 
-      <br>
-    <%= f.submit "Add new report" %>
-    <% end%>
-</section>
-  <br>
-<%= link_to "Back to your reports", reports_path %>
-<br><br>
-Logged in as: <%= current_user.name %> <br><br> <%= link_to 'Log Out', logout_path, method: :delete %>
 
-<% else %>
-   <h1>You are not logged in.  Please log in to access this page.</h1>
-  <%= link_to 'Log In', login_path %>
 
-<% end %>
+

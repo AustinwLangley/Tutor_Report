@@ -1,13 +1,15 @@
 
 
-<div class="jumbotron">
-  <%= image_tag "logo_4NF.jpg"  %>
-  <h1>Tutor Sign Up</h1>
-</div>
+<!-- <div class="jumbotron"> -->
+  <%#= image_tag "logo_4NF.jpg"  %>
+ 
+<!-- </div> -->
 
 
 <div class="container">
   <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+
+ <h1>Tutor Sign Up</h1>
 
   <% if @user.errors.any? %>
     <div>
@@ -41,12 +43,12 @@
       <%= f.password_field :password_confirmation, class: "form-control"  %>
     </div>
     <div>
-      <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
+      <%= f.submit "Sign up", class: "btn btn-success btn-block" %>
     </div>
   <% end %>
   <br>
   <div>
-  <%= link_to 'Log In', login_path, class: "btn btn-info btn-block"  %>
+  <%= link_to 'Have an Account already?  Log in', login_path, class: "btn btn-primary btn-block"  %>
   </div>
   </div>
 </div>

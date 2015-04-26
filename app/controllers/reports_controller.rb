@@ -2,6 +2,7 @@ class ReportsController < ApplicationController
 
 	def index
 		@user = current_user
+		#@report_name = User.find(Report.user_id)
 		#These if statements check to see if any search terms have been entered in before #returning all reports.
 		if params[:student_id]
 				@reports = Report.where(student_nfl_id: params[:student_id])

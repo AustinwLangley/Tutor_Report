@@ -1,10 +1,20 @@
 <% if logged_in? %>
 
-<section>
-	<h1><%= current_user.name %></h1>
-	<p><strong>Name:</strong><%= @user.name %></p>
-	<p><strong>Email:</strong><%= @user.email%></p>
-</section>
+<%= render 'shared/navbar' %> 
+
+	<% if current_user.role == "admin" %> 
+
+		<section>
+			<h1><%= current_user.name %></h1>
+			<p><strong>Name:</strong><%= @user.name %></p>
+			<p><strong>Email:</strong><%= @user.email%></p>
+		</section>
+
+	<% else %>
+
+		<h1>Only Admins may view this page</h1>
+
+	<% end %>
 
 <% else %>
 	 <h1>You are not logged in.  Please log in to access this page.</h1>
