@@ -6,7 +6,7 @@
 		<!-- display report details -->
 		<h1>Report Details:</h1>
 		<p><strong>Student ID #: </strong><%= @report.student_nfl_id %> <br><br>
-		<strong>Created at:</strong> <%= @report.created_at %><br><br>
+		<strong>Created at:</strong> <%= @report.created_at.strftime("%I:%M%p on %m/%d/%y") %><br><br>
 		<strong>What was covered:</strong> <%= @report.what_was_covered %><br><br>
 		<strong>Performance:</strong> <%= @report.performance %><br><br>
 		<strong>Assignment:</strong> <%= @report.assignment %><br><br>
