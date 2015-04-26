@@ -1,32 +1,21 @@
 class UsersController < ApplicationController
-	
-  	attr_reader :password #add this line right below our list of fields
-
-	  #we also need to create an @password instance variable and set it's value in our setter method
-	  def password=(unencrypted_password)
-	    unless unencrypted_password.empty?
-	    @password = unencrypted_password
-	    self.password_digest = BCrypt::Password.create(unencrypted_password)
-    end
-  end
-
-	def index
+	def index #this action lists all users.  
 		@users = User.all
 	end
-	def show
+
+	def show #this actions shows a particular record of an user.  
 		@user = User.find(params[:id])
 		@report = Report.new
-		
 	end
 
-	def new
+	def new #this action is the first half of createing a new user.  
     	@user = User.new
     	@report = Report.new
  	end
 
-	def create
+	def create #records the new user into the database.  
 	  @user = User.new(params.require(:user).permit(:name, :email, :password, :password_confirmation))
-	  if @user.save
+	  if @user.save  #if the record saves, create a cookie, flash a welcome message and redirect to the new report view.  
 	  	session[:user_id] = @user.id.to_s
 	  	flash[:welcome] = "Thanks for signing up, #{@user.name}!"
 	    redirect_to new_report_path(@user)
@@ -34,4 +23,4 @@ class UsersController < ApplicationController
     	render :new
   	end
   end
-end
+end #end of controller

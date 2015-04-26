@@ -1,8 +1,6 @@
 class ReportsController < ApplicationController
-
-	def index
+	def index #This action is used to list reports.
 		@user = current_user
-		#@report_name = User.find(Report.user_id)
 		#These if statements check to see if any search terms have been entered in before #returning all reports.
 		if params[:student_id]
 				@reports = Report.where(student_nfl_id: params[:student_id])
@@ -15,45 +13,46 @@ class ReportsController < ApplicationController
 		end
 	end
 
-	def show
+	def show #This action shows one report that has been id.
 		@report = Report.find(params[:id]) 	
 		@user = current_user
 	end
 
-	def new
+	def new #This action is the first half of creating and saving a new report.
 		@report = Report.new
 		@user = current_user
 	end
 
-	def create
+	def create #This action is the second part of creating a new report.
 		@user = User.find(params[:id])
 		@report = @user.reports.new(report_params)
 		@report.save
-		flash[:saved] = "Your report has been saved, #{@user.name}!"
-		redirect_to new_report_path(@user)
+		#This message flashes when a new report is saved:
+		flash[:saved] = "Your report has been saved, #{@user.name}!" 
+		redirect_to new_report_path(@user) #after a new report is saved the user is redirected to fresh create report page.  
 	end
 
-	def edit
+	def edit #This action is the first part of editing a page.  "retrives a single record"
 		@report = Report.find(params[:id]) 
 		@user = current_user
 	end
 
-	def update
-  	  @report = Report.find(params[:id])
-	  if @report.update_attributes(report_params)
-	    redirect_to reports_path
+	def update #this action saves the change in the database.
+  	@report = Report.find(params[:id]) #retrives a single record
+	  if @report.update_attributes(report_params)  #If a record is successfully updated, redirect to the reports index.  
+	  	redirect_to reports_path
 	  else
-	    render :edit
+	    render :edit  #If a record is not successfully updated, render a new edit form.
 	  end
 	end
 
-	def destroy
+	def destroy #this action destroys a single record.
 	  @report = Report.find(params[:id])
 	  @report.destroy
-	  redirect_to reports_path
+	  redirect_to reports_path  #redirects to the report index.  
 	end
 
-private
+	private #This is a private method that refactors our controller.  This method is used anytime we need to use the report parameters.  
 	def report_params
 		params.require(:report).permit(:student_nfl_id, :tutor_nfl_id, :what_was_covered, 
 			:performance, :assignment, :director_flag, :parent_flag)

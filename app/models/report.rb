@@ -1,14 +1,3 @@
 class Report < ActiveRecord::Base
-  belongs_to :user
-
-  # Code added to attempt to add a search box
-  #------------------------------------------------------------------------------
-	#def self.search(search)
-	  #if search
-	    #find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
-	  #else
-	    #find(:all)
-	  #end
-	#end
-	#-------------------------------------------------------------------------------
+  belongs_to :user #sets up model relationship where a report belongs to an user.
 end
