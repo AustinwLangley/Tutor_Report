@@ -1,11 +1,11 @@
+<%= render 'shared/login_navbar' %> 
+
 <div class="container">
   <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+    <%#= image_tag("logo_4NF.jpg", size: "375x375") %>
+    <h1>Tutor Log In</h1>
 
-<h1>New Future Learning</h1>
-
-<%#= image_tag "logo_4NF.jpg" %>
-
-  <%= form_for :login, url: login_path do |f| %>  <!-- Specifying the route to go to login path -->
+    <%= form_for :login, url: login_path do |f| %>  <!-- Specifying the route to go to login path -->
     <div class="form-group">
       <%= f.label :email %>
       <%= f.text_field :email, class: "form-control"    %>
@@ -17,7 +17,7 @@
     <div class="form-group">
       <%= f.submit 'Log in', class: "btn btn-success btn-block"  %>
     </div>
-<% end %>
+    <% end %>
 
 <%= link_to "Don't have an Account?  Sign up", signup_path, class: "btn btn-primary btn-block"  %>
 
