@@ -7,21 +7,21 @@
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+	<body>
+		<!-- flash messages when events occur -->
+		<% if flash[:welcome] %>
+		    <h4 class="bg-success flash"><%= flash[:welcome] %></h4>
+		<% end %>
 
-<% if flash[:welcome] %>
-    <h4 class="bg-success flash"><%= flash[:welcome] %></h4>
-<% end %>
+		<% if flash[:error] %>
+		    <h4 class="bg-danger flash"><%= flash[:error] %></h4>
+		<% end %>
 
-<% if flash[:error] %>
-    <h4 class="bg-danger flash"><%= flash[:error] %></h4>
-<% end %>
+		<% if flash[:saved] %>
+		    <h4 class="bg-success flash"><%= flash[:saved] %></h4>
+		<% end %>
 
-<% if flash[:saved] %>
-    <h4 class="bg-success flash"><%= flash[:saved] %></h4>
-<% end %>
+		<%= yield %>
 
-<%= yield %>
-
-</body>
+	</body>
 </html>

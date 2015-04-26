@@ -1,71 +1,71 @@
+<!-- If logged in, show this page -->
 <% if logged_in? %>
-
-<%= render 'shared/navbar' %> 
-
-<div class="container">
-  <div class="row">
-    <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
-      <section>
-        <h2>Add a New Report</h2>
-        <%= form_for [@user, @report] do |f| %>
-
-          <div class="form-group">
-                <%= f.label :student_nfl_id, "Student ID #"  %>
-                <%= f.text_field :student_nfl_id, class: "form-control" %>
-          </div>
-
-          <div class="form-group">
-                <%= f.label :tutor_nfl_id, "Tutor ID #" %>
-                <%= f.text_field :tutor_nfl_id, class: "form-control" %>
-          </div>
+  <!-- Show NavBar --> 
+  <%= render 'shared/navbar' %> 
+  <div class="container">
+    <!-- Sets bootstrap layout for this div to row -->
+    <div class="row">
+      <!-- column set to 4 sm col wide -->
+      <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+        <section>
+          <h2>Add a New Report</h2>
+          <!-- form-for that takes in @user and @report -->
+          <%= form_for [@user, @report] do |f| %>
+            <!-- Student Id entry -->
+            <div class="form-group">
+              <%= f.label :student_nfl_id, "Student ID #"  %>
+              <%= f.text_field :student_nfl_id, class: "form-control" %>
+            </div>
+            <!-- Tutor Id entry -->
+            <div class="form-group">
+              <%= f.label :tutor_nfl_id, "Tutor ID #" %>
+              <%= f.text_field :tutor_nfl_id, class: "form-control" %>
+            </div>
+            <!-- What was covered entry  -->
+            <div class="form-group">
+                  <%= f.label :what_was_covered, "What was covered? " %>
+                  <%= f.text_area :what_was_covered, class: "form-control" %>
+            </div>
+            <!-- Performance entry -->
+            <div class="form-group">
+              <%= f.label :performance, "Performance: " %>
+              <%= f.text_area :performance, class: "form-control" %>
+            </div>
+            <!-- Assignment entry -->
+            <div class="form-group">
+              <%= f.label :assignment, "Assignment: " %>
+              <%= f.text_area :assignment, class: "form-control" %>
+            </div>
             <br>
-          <div class="form-group">
-                <%= f.label :what_was_covered, "What was covered? " %>
-                <%= f.text_area :what_was_covered, class: "form-control" %>
-          </div>
-
-          <div class="form-group">
-                <%= f.label :performance, "Performance: " %>
-                <%= f.text_area :performance, class: "form-control" %>
-          </div>
-
-          <div class="form-group">
-                <%= f.label :assignment, "Assignment: " %>
-                <%= f.text_area :assignment, class: "form-control" %>
-          </div>
-            <br>
-
-          <div class="form-group">
+            <!-- Director flag entry -->
+            <div class="form-group">
               <%= f.label :director_flag, "Does the Director need to take a look at this?" %><br>
               <%= f.label :director_flag, "Yes", :value => true %>
               <%= f.radio_button :director_flag, true %>
               <%= f.label :director_flag, "No", :value => false %>
               <%= f.radio_button :director_flag, false, :checked => true %>
-          </div>
-
-          <div class="form-group">
+            </div>
+            <!-- Parent flag entry -->
+            <div class="form-group">
               <%= f.label :parent_flag, "Do the Parents need to be notified?" %><br>
               <%= f.label :parent_flag, "Yes", :value => true %>
               <%= f.radio_button :parent_flag, true %>
               <%= f.label :parent_flag, "No", :value => false %>
               <%= f.radio_button :parent_flag, false, :checked => true %>
-          </div>
-
+            </div>
+            <!-- Submit changes button -->
             <br>
-          <%= f.submit "Add new report", class: "btn btn-success btn-block"  %>
-          <% end%>
-      </section>
-        
-      <% else %>
-         <h1>You are not logged in.  Please log in to access this page.</h1>
-        <%= link_to 'Log In', login_path %>
-
-      <% end %>
+            <%= f.submit "Add new report", class: "btn btn-success btn-block"  %>
+            <% end%>
+        </section>
+        <!-- If a user is not logged in, show this instead of above   -->
+        <% else %>
+          <h1>You are not logged in.  Please log in to access this page.</h1>
+          <%= link_to 'Log In', login_path %>
+      </div>
     </div>
   </div>
-</div>
-
-
+<% end %>
 
 
 
