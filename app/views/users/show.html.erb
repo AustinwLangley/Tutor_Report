@@ -7,8 +7,8 @@
 		<% if current_user.role == "admin" %> 
 			<section>
 				<h1><%= current_user.name %></h1>
-				<p><strong>Name:</strong><%= @user.name %></p>
-				<p><strong>Email:</strong><%= @user.email%></p>
+				<p><strong>Name: </strong><%= @user.name %></p>
+				<p><strong>Email: </strong><%= @user.email%></p>
 				<!-- edit button -->
 			<%= link_to "Edit this user", edit_user_path(@user), class: "btn btn-primary" %>
 			<!-- delete button -->
@@ -16,8 +16,8 @@
 			</section>
 		<% else %>
 			<section>
-				<p><strong>Name:</strong><%= @user.name %></p>
-				<p><strong>Email:</strong><%= @user.email%></p>
+				<p><strong>Name: </strong><%= @user.name %></p>
+				<p><strong>Email: </strong><%= @user.email%></p>
 				<!-- edit button -->
 			<%= link_to "Edit your profile", edit_user_path(@user), class: "btn btn-primary" %>
 			<!-- delete button -->
