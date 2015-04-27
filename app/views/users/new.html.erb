@@ -1,54 +1,52 @@
-
-<!-- 
-<div class="jumbotron"> 
-  <%#= image_tag("logo_4NF.jpg", size: "100x100") %>
-</div> -->
-
+<!-- Show NavBar -->
 <%= render 'shared/login_navbar' %> 
 
 <div class="container">
   <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
 
- <h1>Tutor Sign Up</h1>
-
-  <% if @user.errors.any? %>
+    <h1>NFLC Tutor Sign Up</h1>
+    <!-- if any errors with user sign up show the followingg warnings -->
+    <% if @user.errors.any? %>
+      <div>
+        <h4 class="text-danger"><%= pluralize(@user.errors.count, "error") %> prevented you from signing up for an account:</h4>
+        <ul class="list-group">
+          <% @user.errors.full_messages.each do |msg| %>   
+            <li class="list-group-item list-group-item-danger"><%= msg.downcase %></li>
+          <% end %>
+        </ul>            
+      </div>
+    <% end %>
+    <!-- form for signing up -->
+    <%= form_for @user do |f| %>
+      <!-- name entry -->
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control"   %>
+      </div>
+      <!-- email entry -->
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: "form-control"   %>
+      </div>
+      <!-- password entry -->
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control"  %>
+      </div>
+      <!-- password confirmation -->
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: "form-control"  %>
+      </div>
+      <!-- sign up button -->
+      <div>
+        <%= f.submit "Sign up", class: "btn btn-success btn-block" %>
+      </div>
+    <% end %>
+    <br>
     <div>
-
-      <h4 class="text-danger"><%= pluralize(@user.errors.count, "error") %> prevented you from signing up for an account:</h4>
-
-      <ul class="list-group">
-        <% @user.errors.full_messages.each do |msg| %>   
-          <li class="list-group-item list-group-item-danger"><%= msg.downcase %></li>
-        <% end %>
-      </ul>            
-
+      <!-- already have account button -->
+      <%= link_to 'Have an Account already?  Log in', login_path, class: "btn btn-primary btn-block"  %>
     </div>
-  <% end %>
-
-  <%= form_for @user do |f| %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control"   %>
-    </div>
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.text_field :email, class: "form-control"   %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password %>
-      <%= f.password_field :password, class: "form-control"  %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, class: "form-control"  %>
-    </div>
-    <div>
-      <%= f.submit "Sign up", class: "btn btn-success btn-block" %>
-    </div>
-  <% end %>
-  <br>
-  <div>
-  <%= link_to 'Have an Account already?  Log in', login_path, class: "btn btn-primary btn-block"  %>
-  </div>
   </div>
 </div>

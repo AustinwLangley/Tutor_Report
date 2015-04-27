@@ -1,0 +1,69 @@
+<% if logged_in? %>
+  <!-- Show NavBar -->
+  <%= render 'shared/navbar' %> 
+  <div class="container">
+      <!-- Sets bootstrap layout for this div to row -->
+      <div class="row">
+        <!-- column set to 4 sm col wide -->
+        <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+          <section>
+            <!-- show this title if admin -->
+            <% if current_user.role == "admin" %> 
+            <h2>Edit this User</h2>
+            <!-- show this title if tutor -->
+            <% else %>
+            <h2>Edit your profile</h2>
+            <% end %>
+            <!-- if any errors with user sign up show the followingg warnings -->
+            <% if @user.errors.any? %>
+              <div>
+                <h4 class="text-danger"><%= pluralize(@user.errors.count, "error") %> prevented you from changing the account:</h4>
+                <ul class="list-group">
+                  <% @user.errors.full_messages.each do |msg| %>   
+                    <li class="list-group-item list-group-item-danger"><%= msg.downcase %></li>
+                  <% end %>
+                </ul>            
+              </div>
+            <% end %>
+            <!-- form-for that points specifically to the reports controller and update action -->
+            <%= form_for(@user, url: {controller: "users", action: "update"}) do |f| %>
+              <!-- name entry -->
+            <div class="form-group">
+              <%= f.label :name %>
+              <%= f.text_field :name, class: "form-control"   %>
+            </div>
+            <!-- email entry -->
+            <div class="form-group">
+              <%= f.label :email %>
+              <%= f.text_field :email, class: "form-control"   %>
+            </div>
+            <!-- password entry -->
+            <div class="form-group">
+              <%= f.label :password, "New Password" %>
+              <%= f.password_field :password, class: "form-control"  %>
+            </div>
+            <!-- password confirmation -->
+            <div class="form-group">
+              <%= f.label :password_confirmation %>
+              <%= f.password_field :password_confirmation, class: "form-control"  %>
+            </div>
+            <!-- show this option if admin -->
+            <% if current_user.role == "admin" %> 
+            <div class="form-group">
+              <%= f.label :role, "Update role to admin" %>
+              <%= f.text_field :role, class: "form-control"  %>
+            </div>
+            <% end %>
+              <!-- Submit changes button -->
+            <br>
+            <%= f.submit "Submit these changes", class: "btn btn-success btn-block"   %>
+            <% end%>
+          </section>
+          <!-- If a user is not logged in, show this instead of above   -->
+          <% else %>
+              <h1>You are not logged in.  Please log in to access this page.</h1>
+               <%= link_to 'Log In', login_path %>
+          </div>
+      </div>
+  </div>
+<% end %> <!-- end of if statement -->

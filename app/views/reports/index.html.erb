@@ -5,87 +5,61 @@
 	<div class="container">
 		<!-- Sets bootstrap layout for this div to row -->
 	    <div class="row">
-	    <!-- ******************************************************************************** -->
-	    <!-- Show the section below if the user logged in as admin -->
-	    <!-- ******************************************************************************** -->
-		<% if current_user.role == "admin" %> 
-		<!-- Below are search boxes (form_tag is for passing data, form_for is for creating new instances)-->
-		<!-- ******************************************************************************** -->
-		<!-- Search reports by student id -->
-		<%= form_tag reports_path, method: :get do  %>
-			<div div class="col-md-4">
-				<div>
-				    <h4>Search by Student Id:</h4>
-			        <%= label_tag :student_id, ""  %>
-			        <%= text_field_tag :student_id%>
-			    </div>
-			    <br>
-			    <%= submit_tag 'Search', class: "btn btn-primary" %>
-			</div> 
-		<% end %>
-		<!-- Search reports by director flag -->
-		<%= form_tag reports_path, method: :get do  %>
-			<div div class="col-md-4">
-				<div>
-					<h4>Search by Director flag:</h4>
-			        <%= label_tag :director_flag_setting, "" %>
-			        <%= text_field_tag :director_flag_setting %>
-			    </div>
-			    <br>
-			    <%= submit_tag 'Search', class: "btn btn-primary" %>
+			<!-- Below are search boxes (form_tag is for passing data, form_for is for creating new instances)-->
+			<!-- ******************************************************************************** -->
+			<!-- Search reports by student id -->
+			<%= form_tag reports_path, method: :get do  %>
+				<div div class="col-md-4">
+					<div>
+					    <h4>Search by Student Id:</h4>
+				        <%= label_tag :student_id, ""  %>
+				        <%= text_field_tag :student_id%>
+				    </div>
+				    <br>
+				    <%= submit_tag 'Search', class: "btn btn-primary" %>
+				</div> 
+			<% end %>
+			<!-- Search reports by director flag -->
+			<%= form_tag reports_path, method: :get do  %>
+				<div div class="col-md-4">
+					<div>
+						<h4>Search by Director flag:</h4>
+				        <%= label_tag :director_flag_setting, "" %>
+				        <%= text_field_tag :director_flag_setting %>
+				    </div>
+				    <br>
+				    <%= submit_tag 'Search', class: "btn btn-primary" %>
+				</div>
+			<% end %>
+		 	<!-- Search reports by parent flag -->
+			<%= form_tag reports_path, method: :get do  %>
+				<div div class="col-md-4">
+					<div>
+						<h4>Search by Parent flag:</h4>
+					    <%= label_tag :parent_flag_setting, "" %>
+					    <%= text_field_tag :parent_flag_setting %>
+				    </div>
+				    <br>
+				    <%= submit_tag 'Search', class: "btn btn-primary" %>
+				</div>   
+			<% end %>
+			<!-- ********************************************************************************* -->
+		   	<!-- Show a list of all reports -->
 			</div>
-		<% end %>
-	 	<!-- Search reports by parent flag -->
-		<%= form_tag reports_path, method: :get do  %>
-			<div div class="col-md-4">
-				<div>
-					<h4>Search by Parent flag:</h4>
-				    <%= label_tag :parent_flag_setting, "" %>
-				    <%= text_field_tag :parent_flag_setting %>
-			    </div>
-			    <br>
-			    <%= submit_tag 'Search', class: "btn btn-primary" %>
-			</div>   
-		<% end %>
-		<!-- ********************************************************************************* -->
-	   	<!-- Show a list of all reports -->
-		</div>
-			<section>
-				<div class="row">
-					<h3>Reports:</h3>
-					<% @reports.each do |report| %>
-						<div class="col-md-4">
-							<h3>Report #<%= @reports.index(report) +1 %></h3>
-							<p><strong>Report on Student Id # <%=report.student_nfl_id%> </strong></p>
-							<p><strong>Written by Tutor Id #: <%=report.tutor_nfl_id%> </strong></p>
-							<%= link_to "More info", report_path(report) %> <!-- link helper method -->
-						</div>
-					<% end %>
-				</div>
-			</section>
-		<!-- ******************************************************************************** -->
-	    <!-- Show section above if the user logged in as admin -->
-	    <!-- ******************************************************************************** -->
-
-	    <!-- Show section below if user is just a tutor.  Shows only reports that belong to that tutor -->
-		<% else %>
-			<!-- list of reports made by a specified tutor. -->
-			<section>
-				<div class="row">
-					<h3>Reports:</h3>
-					<% @user.reports.each do |report| %>
-						<div class="col-md-4">
-							<h3>Report #<%= @user.reports.index(report) +1 %></h3>
-							<p><strong>Report on Student Id # <%=report.student_nfl_id%> </strong></p>
-							<p><strong>Written by tutor Id #: <%=report.tutor_nfl_id%></strong></p>
-							<%= link_to "More info", report_path(report) %> <!-- link helper method -->
-						</div>
-					<% end %>
-				</div>
-			</section>
-		<% end %> <!-- end admin if statement from above -->
-		<!-- If not logged in, show this page -->
-		<% else %>
+				<section>
+					<div class="row">
+						<h3>Reports:</h3>
+						<% @reports.each do |report| %>
+							<div class="col-md-4">
+								<h3>Report #<%= @reports.index(report) +1 %></h3>
+								<p><strong>Report on Student Id # <%=report.student_nfl_id%> </strong></p>
+								<p><strong>Written by Tutor Id #: <%=report.tutor_nfl_id%> </strong></p>
+								<%= link_to "More info", report_path(report) %> <!-- link helper method -->
+							</div>
+						<% end %>
+					</div>
+				</section>
+			<% else %>
 			<h1>You are not logged in.  Please log in to access this page.</h1>
 		    <%= link_to 'Log In', login_path %>
 	</div>

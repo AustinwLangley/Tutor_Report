@@ -19,8 +19,30 @@ class UsersController < ApplicationController
 	  	session[:user_id] = @user.id.to_s
 	  	flash[:welcome] = "Thanks for signing up, #{@user.name}!"
 	    redirect_to new_report_path(@user)
-  	else
+  	  else
     	render :new
+  	  end
   	end
-  end
+
+  	def edit #This action is the first part of editing a page.  "retrives a single record"
+		@user = User.find(params[:id]) 
+	end
+
+	def update #this action saves the change in the database.
+  	@user = User.find(params[:id]) #retrives a single record
+	  if @user.update_attributes(params.require(:user).permit(:name, :email, :password, :password_confirmation, :role))  #If a record is successfully updated, redirect to the users index.
+	  	flash[:welcome] = "Your changes have been saved."  
+	  	redirect_to new_report_path(@user)
+	  else
+	    render :edit  #If a record is not successfully updated, render a new edit form.
+	  end
+	end
+
+  	def destroy #this action destroys a single record.
+	  @user = User.find(params[:id])
+	  @user.destroy
+	  redirect_to users_path  #redirects to the report index.  
+	end
+
+  	
 end #end of controller

@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   #This vaidates the name, email and password
   validates :name, presence: true #make sure name is present
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i } #make sure email is present, unique and in the correct format
-  validates :password, presence: true, confirmation: true, length: { in: 6..20}, on: :create #makes sure password is present, confirmed and 6 to 20 characters   
-
+  validates :password, presence: true, confirmation: true, length: { in: 6..20} #, on: :create #makes sure password is present, confirmed and 6 to 20 characters   
+   
 	def password=(unencrypted_password) #setter method for password.
     unless unencrypted_password.empty? #if there is no password, take the inputed password, salt and hash it.  Then set it in the record for that user.  
     @password = unencrypted_password

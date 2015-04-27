@@ -1,12 +1,20 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     	<!-- logo image -->
-		<%= image_tag("logo_4NF.jpg", size: "50x50")  %>
-		<span>Logged in as: <%= current_user.name %></span>
-    <ul class="nav navbar-nav navbar-right">       
+  		<%= image_tag("logo_4NF.jpg", size: "50x50")  %>
+      <!-- shows who is logged in -->
+  		<span>Logged in as: <%= current_user.name %></span>
+      <!-- navbar links -->
+      <ul class="nav navbar-nav navbar-right">       
         <li><%= link_to "List of Reports", reports_path %></li>
         <li><%= link_to "Create a new report", new_report_path%></li>
+        <li><%= link_to "Your Profile", user_path(current_user.id)%></li>
+        <!-- If the user is an admin, show list of users link -->
+        <% if current_user.role == "admin" %> 
+          <li><%= link_to "List of users", users_path%></li>
+        <% end %>
+        <!-- logout button -->
         <li><%= link_to 'Log Out', logout_path, method: :delete, class: "btn btn-warning btn-block" %></li>	
-    </ul>
+      </ul>
   </div><!-- /.container-fluid -->
 </nav>
