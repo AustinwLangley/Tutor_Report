@@ -30,22 +30,13 @@ class UsersController < ApplicationController
 
 	def update #this action saves the change in the database.
   	  @user = User.find(params[:id]) #retrives a single record
-  	  if current_user.role == "admin"
-		  if @user.update_attributes(params.require(:user).permit(:name, :email, :password, :password_confirmation, :role))  #If a record is successfully updated, redirect to the users index.
+		  if @user.update_attributes(user_params)  #If a record is successfully updated, redirect to the users index.
 		  	flash[:welcome] = "Your changes have been saved."  
 		  	redirect_to new_report_path(@user)
 		  else
 		    render :edit  #If a record is not successfully updated, render a new edit form.
-		  end
-	  else
-		  if @user.update_attributes(params.require(:user).permit(:name, :email, :password, :password_confirmation))  #If a record is successfully updated, redirect to the users index.
-		  	flash[:welcome] = "Your changes have been saved."  
-		  	redirect_to new_report_path(@user)
-		  else
-		    render :edit  #If a record is not successfully updated, render a new edit form.
-		  end
-	  end
-  end
+		end
+  	end
 
   	def destroy #this action destroys a single record.
 	  @user = User.find(params[:id])
@@ -53,5 +44,12 @@ class UsersController < ApplicationController
 	  redirect_to users_path  #redirects to the report index.  
 	end
 
-  	
+	private
+	def user_params
+		if current_user.role == "admin"
+	  		params.require(:user).permit(:name, :email, :password, :password_confirmation, :role)
+	  	else
+			params.require(:user).permit(:name, :email, :password, :password_confirmation)
+	  	end
+	end
 end #end of controller
