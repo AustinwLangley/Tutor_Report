@@ -14,7 +14,7 @@
             <% else %>
             <h2>Edit your profile</h2>
             <% end %>
-            <!-- if any errors with user sign up show the followingg warnings -->
+            <!-- if any errors with user sign up show the following warnings -->
             <% if @user.errors.any? %>
               <div>
                 <h4 class="text-danger"><%= pluralize(@user.errors.count, "error") %> prevented you from changing the account:</h4>
