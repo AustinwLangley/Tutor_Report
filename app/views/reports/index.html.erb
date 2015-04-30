@@ -44,12 +44,12 @@
 				</div>   
 			<% end %>
 			<!-- ********************************************************************************* -->
-		   	<!-- Show a list of all reports -->
+		   	<!-- Show a list of all reports starting from the newest to oldest-->
 			</div>
 				<section>
 					<div class="row">
 						<h3>Reports:</h3>
-						<% @reports.each do |report| %>
+						<% @reports.reverse.each do |report| %>
 							<div class="col-md-4">
 								<h3>Report #<%= @reports.index(report) +1 %></h3>
 								<p><strong>Report on Student Id # <%=report.student_nfl_id%> </strong></p>
