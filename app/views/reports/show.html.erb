@@ -16,7 +16,7 @@
 		<!-- Show the section below if the user logged in as admin -->
 		<% if current_user.role == "admin" %> 
 		<!-- edit button -->
-		<%= link_to "Edit this report", edit_report_path(@report), class: "btn btn-primary" %>
+		<%= link_to "Edit this report", edit_report_path(@report), class: "btn btn-warning" %>
 		<!-- delete button -->
 		<%= link_to "Delete this report", report_path, method: :delete, data: { confirm: "Are you sure you want to delete this report?"}, class: "btn btn-danger"  %>
 		<% end %><!-- end admin if statement from above -->
