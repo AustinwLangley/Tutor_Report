@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
 
   #helper method current_user is defined here so that all controllers will have access to it.
   helper_method :current_user
-  #set time zone to Pacific time for the strftime method.
-  Time.zone = "Pacific Time (US & Canada)"
+  #set time zone to Eastern time for the strftime method.
+  Time.zone = "Eastern Time (US & Canada)"
 	
 	private 
 	def current_user #helper method that helps with identifying whether a user is logged in.
@@ -15,4 +15,3 @@ class ApplicationController < ActionController::Base
 end #end of class
 
 
-	
