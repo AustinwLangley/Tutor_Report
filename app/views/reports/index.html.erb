@@ -51,10 +51,20 @@
 						<h3>Reports:</h3>
 						<% @reports.reverse.each do |report| %>
 							<div class="col-md-4">
-								<h3>Report #<%= @reports.index(report) +1 %></h3>
 								<p><strong>Report on Student Id # <%=report.student_nfl_id%> </strong></p>
 								<p><strong>Written by Tutor Id #: <%=report.tutor_nfl_id%> </strong></p>
-								<%= link_to "More info", report_path(report) %> <!-- link helper method -->
+								<p><strong>Created at:</strong> <%= report.created_at.strftime("%I:%M%p on %m/%d/%y") %></p>
+								<p><strong>What was covered:</strong> <%= report.what_was_covered %></p>
+							    <p><strong>Performance:</strong> <%= report.performance %></p>
+							    <p><strong>Assignment:</strong> <%= report.assignment %></p>
+								<p><strong>Director flag:</strong> <%= report.director_flag%></p>
+								<p><strong>Parent flag:</strong> <%= report.parent_flag %></p>
+								<% if current_user.role == "admin" %> 
+								<!-- edit button -->
+								<%= link_to "Edit this report", edit_report_path(report), class: "btn btn-primary" %>
+								<!-- delete button -->
+								<%= link_to "Delete this report", report_path(report), method: :delete, data: { confirm: "Are you sure you want to delete this report?"}, class: "btn btn-danger"  %>
+								<% end %><!-- end admin if statement from above -->
 							</div>
 						<% end %>
 					</div>
