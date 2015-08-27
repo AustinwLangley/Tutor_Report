@@ -6,9 +6,7 @@ class ApplicationController < ActionController::Base
   #helper method current_user is defined here so that all controllers will have access to it.
   helper_method :current_user
   #set time zone to Eastern time for the strftime method.
-  config.time_zone = 'Eastern Time (US & Canada)'
-  Time.zone = "Eastern Time (US & Canada)"
-	
+
 	private 
 	def current_user #helper method that helps with identifying whether a user is logged in.
 	  @current_user ||= User.find(session[:user_id]) if session[:user_id]

@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
 	def index #This action is used to list reports.
 		@user = current_user
+		Time.zone = "Eastern Time (US & Canada)"
 		#These if statements check to see if any search terms have been entered in before #returning all reports.
 		if params[:student_id]
 				@reports = Report.where(student_nfl_id: params[:student_id])
